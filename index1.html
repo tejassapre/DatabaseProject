@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+
+</head>
+<body>
+  <nav>
+    <ul>
+        <li>TAKE AWAY</li>
+        <li class="leftcontent">AddOrder</li>
+        <li class="leftcontent"><a href="retrievedata.html">Records</a></li>
+        <li class="leftcontent">Logout</li>
+    </ul>
+</nav>
+  <header>ADD ORDER</header>
+  <div class="container">
+    <label>Tea</label> <input id="teabox" type="number"><br>
+    <label>Coffee</label>  <input id="rollbox" type="number"><br>
+    <label>Samosa</label>  <input id="sectionbox" type="number"><br>
+    <label>Tarri_Poha</label> <input id="genbox" type="number"><br>
+
+                <div class="price">
+                        <label>Price</label> <input type="number" id="amt">
+                </div>
+
+                <div class="quantity">
+                 <label >Quantity</label>  <input type="number" id="qnt">
+                </div>
+
+                <div class="Totalamount">
+                  <label>Total Amount</label><input type="number" id="toatal">
+                </div>
+  </div>
+    
+     <hr>
+     <button id="inbtn">Submit</button>
+     
+
+     <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBn3ke7AGYPSR3RLQlOtxzjQmT9TWkbvDs",
+          authDomain: "loginpage-50c4b.firebaseapp.com",
+          databaseURL: "https://loginpage-50c4b-default-rtdb.firebaseio.com",
+          projectId: "loginpage-50c4b",
+          storageBucket: "loginpage-50c4b.appspot.com",
+          messagingSenderId: "83775393169",
+          appId: "1:83775393169:web:799278cc414cd02d775e30"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import{getDatabase,ref,set,child,update,remove}
+        from"https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js";
+
+        const db= getDatabase();
+
+        var teabox =document.getElementById("teabox");
+        var rollbox =document.getElementById("rollbox");
+        var secbox =document.getElementById("sectionbox");
+        var genbox =document.getElementById("genbox");
+
+        var inbtn=document.getElementById("inbtn");
+        
+
+        function insertdata(){
+          set(ref(db,"Students",rollbox.value),{
+            Tea :teabox.value,
+            coffee: rollbox.value,
+            Samosa:secbox.value,
+            Tarri_Poha: genbox.value
+
+          })
+          .then(()=>{
+            alert("data stored successsfully");
+          })
+          .catch((error)=>{
+           alert("unsuccessful,error"+error)
+          })
+          }
+
+          inbtn.addEventListener('click',insertdata);
+      </script>
+</body>
+</html>

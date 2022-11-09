@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RETRIEVE DATA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-3">
+    <table class="table table-dark text-white">
+        <thead>
+            <th>Sno</th>
+            <th>Samosa</th>
+            <th>Tarri_Poha</th>
+            <th>Tea</th>
+            <th>Coffee</th>
+        </thead>
+        <tbody id="tbody1">
+            <td>1</td>
+            <td>4</td>
+            <td>2</td>
+            <td>4</td>
+            <td>5</td>
+
+
+     </tbody>
+    </table>
+</div>
+   
+
+
+            <script id="Mainscript">
+                const firebaseConfig = {
+          apiKey: "AIzaSyBn3ke7AGYPSR3RLQlOtxzjQmT9TWkbvDs",
+          authDomain: "loginpage-50c4b.firebaseapp.com",
+          databaseURL: "https://loginpage-50c4b-default-rtdb.firebaseio.com",
+          projectId: "loginpage-50c4b",
+          storageBucket: "loginpage-50c4b.appspot.com",
+          messagingSenderId: "83775393169",
+          appId: "1:83775393169:web:799278cc414cd02d775e30"
+        };
+      
+        // Initialize Firebase
+        var app = initializeApp(firebaseConfig);
+
+        function selectalldata(){
+            firebase.database.ref('Students').once('value',
+            function(AllRecords){
+                  AllRecords.forEach(
+                    function(CurrentRecord){
+                        var Samosa = CurrentRecord.val().Samosa;
+                        var Tarri_Poha = CurrentRecord.val().Tarri_Poha;
+                        var Tea = CurrentRecord.val().Tea;
+                        var coffee = CurrentRecord.val().coffee;
+                        AddItemsToTable(Samosa,Tarri_Poha,Tea,coffee);
+
+                    }
+                  );
+            });
+        }
+
+        window.onload = SelectAllData;
+        var stdNo=0;
+        function AddItemsToTable(Samosa,Tarri_Poha,Tea,coffee){
+            var tbody=document.getElementById('tbody1');
+            var trow=document.createElement('tr');
+            var td1=document.createElement('td');
+            var td2=document.createElement('td');
+            var td3=document.createElement('td');
+            var td4=document.createElement('td');
+            var td5=document.createElement('td');
+            td1.innerHTML=++stdNo;
+            td2.innerHTML=Samosa;
+            td3.innerHTML=Tarri_Poha;
+            td4.innerHTML=Tea;
+            td5.innerHTML=coffee;
+
+            trow.appendChild(td1);
+            trow.appendChild(td2);
+            trow.appendChild(td3);
+            trow.appendChild(td4);
+            trow.appendChild(td5);
+            tbody.appendChild(trow);
+
+        }
+
+        </script>
+
+<script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"></script>
+
+        
+</body>
+</html>

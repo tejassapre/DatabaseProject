@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul><li>TAKE AWAY</li></ul>
+    </nav>
+
+        <section class="container forms">
+            <div class="form login">
+             <div class="form-content">
+                <header>LOGIN </header>
+                <form action="#" name="loginForm">
+                    <div class="field-input">
+                      <b>Login Id</b><input type="email" placeholder="EMAIL" class="input" name="username">
+                    </div>
+                    
+                 <div class="field-input">
+                    <b>Password</b> <input type="password" placeholder="PASSWORD" class="password" name="password">
+                    <i class="bx bx-hide eye-icon"></i>
+                 </div>
+
+                 <div class="loginbutton">
+                   <a href="index0.html"  ><button type="button" onclick="login(loginForm)">LOGIN</button></a>
+
+                 </div>
+                </form>
+             </div>
+            </div>
+        </section>
+
+        <script>
+            function login(loginForm){
+                if(loginForm.username.value&& loginForm.password.value){
+                    var username=document.getElementsByClassName("input").value;
+                    document.write('<html><body><h1><center>')
+                        document.write("welcome"+" ");
+                        document.write(username);
+                        document.write('</center></h1></body></html>');
+
+                }
+                else{
+                    alert('enter username');
+                }
+            }
+        </script>
+
+    
+</body>
+</html>
